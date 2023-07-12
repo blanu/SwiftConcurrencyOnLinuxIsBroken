@@ -29,6 +29,6 @@ final class SwiftConcurrencyOnLinuxIsBrokenTests: XCTestCase {
             asyncWorks.fulfill()
         }
 
-        wait(for: [asyncWorks])
+        wait(for: [asyncWorks], timeout: 1)
     }
 }
