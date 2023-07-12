@@ -16,14 +16,8 @@ final class SwiftConcurrencyOnLinuxIsBrokenTests: XCTestCase {
 
         Task
         {
-            #if os(macOS)
-            let logger = Logger(subsystem: "testing", category: "testAcceptTask")
-            #else
-            let logger = Logger(label: "testing")
-            #endif
-            let listener = try AsyncTcpSocketListener(port: 1234, logger)
             lock.signal()
-            let _ = try await listener.accept()
+            try await Task.sleep(for: .seconds(10))
         }
 
         lock.wait()

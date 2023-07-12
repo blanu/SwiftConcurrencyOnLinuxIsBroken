@@ -15,7 +15,6 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/OperatorFoundation/TransmissionAsync", branch: "main"),
         .package(url: "https://github.com/apple/swift-log", from: "1.5.2"),
     ],
     targets: [
@@ -30,8 +29,6 @@ let package = Package(
             name: "SwiftConcurrencyOnLinuxIsBrokenTests",
             dependencies: [
                 "SwiftConcurrencyOnLinuxIsBroken",
-                "TransmissionAsync",
-                .product(name: "Logging", package: "swift-log"),
             ]
         ),
     ],
