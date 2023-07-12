@@ -12,6 +12,7 @@ final class SwiftConcurrencyOnLinuxIsBrokenTests: XCTestCase {
     func testAcceptTask() throws
     {
         let asyncWorks = XCTestExpectation(description: "async task called")
+        let lock = DispatchSemaphore(value: 0)
 
         Task
         {
@@ -21,8 +22,11 @@ final class SwiftConcurrencyOnLinuxIsBrokenTests: XCTestCase {
             let logger = Logger(label: "testing")
             #endif
             let listener = try AsyncTcpSocketListener(port: 1234, logger)
+            lock.signal()
             let _ = try await listener.accept()
         }
+
+        lock.wait()
 
         Task
         {
