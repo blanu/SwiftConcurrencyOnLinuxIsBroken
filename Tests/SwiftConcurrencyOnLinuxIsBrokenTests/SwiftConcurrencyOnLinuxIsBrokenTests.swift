@@ -1,12 +1,5 @@
 import XCTest
 @testable import SwiftConcurrencyOnLinuxIsBroken
-import TransmissionAsync
-
-#if os(macOS)
-import os.log
-#else
-import Logging
-#endif
 
 final class SwiftConcurrencyOnLinuxIsBrokenTests: XCTestCase {
     func testAcceptTask() throws
